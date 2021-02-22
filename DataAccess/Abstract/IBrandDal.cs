@@ -5,7 +5,7 @@ using Entities.Concrete;
 
 namespace DataAccess.Abstract
 {
-    public interface IBrandDal:IEntitRepository<Brand>
+    public interface IBrandDal:IEntityRepository<Brand>
     {
     }
 }

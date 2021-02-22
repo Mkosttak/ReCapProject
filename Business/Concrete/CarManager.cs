@@ -4,15 +4,16 @@ using System.Text;
 using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
     public class CarManager:ICarService
     {
         ICarDal _carDal; // Veri erişim yöntemlerinin her birini tutabilecek referans
-        public CarManager(ICarDal iCarDal)
+        public CarManager(ICarDal carDal)
         { // Oluşturma anında bir veri erişim yöntemi istiyor.
-            _carDal = iCarDal;
+            _carDal = carDal;
         }
 
         public void Add(Car car)
@@ -65,6 +66,11 @@ namespace Business.Concrete
         public void Delete(Car car)
         {
             _carDal.Delete(car);
+        }
+
+        public List<CarDetailDto> GetCarDetails()
+        {
+            return _carDal.GetCarDetails();
         }
     }
 }
