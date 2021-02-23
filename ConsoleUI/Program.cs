@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
@@ -14,10 +15,25 @@ namespace ConsoleUI
 
             // Test of EfCarDal
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetCarDetails())
+
+            var result = carManager.GetCarDetails();
+            if (result.Success == true)
             {
-                Console.WriteLine(@"{0}-->{1}-->{2}-->{3}",car.BrandName,car.Description,car.ColorName,car.DailyPrice);
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.Description + " " + car.BrandName);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
+
+            //foreach (var car in carManager.GetCarDetails())
+            //{
+            //    Console.WriteLine(@"{0}-->{1}-->{2}-->{3}",car.BrandName,car.Description,car.ColorName,car.DailyPrice);
+            //}
             //foreach (var car in carManager.GetAll())
             //{
             //    Console.WriteLine(car.Description);
@@ -54,7 +70,7 @@ namespace ConsoleUI
             //}
 
             //Console.WriteLine("------------------------------");
-            
+
             //addcar.Description = "GLA";
             //carManager.Update(addcar);
             //foreach (var car in carManager.GetAll())
