@@ -29,8 +29,6 @@ namespace Business.Concrete
             else
             {
                 return new ErrorResult(Messages.CarInvalid);
-                //Console.WriteLine("The car description must contain at least two characters!\n" +
-                //                  "The daily price of the car must be greater than zero!");
             }
 
         }
